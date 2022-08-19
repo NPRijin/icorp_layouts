@@ -10,22 +10,17 @@
     168,
     61
   ],
-  "Orientation": "landscape",
+  "Orientation": "portrait",
   "BusinessInfo": "get/Manage/BusinessInfo/Details/",
-  "ColourLogo": "get/Manage/BusinessInfo/LandscapeColourLogo/",
-  "BWLogo": "get/Manage/BusinessInfo/LandscapeBWLogo/",
+  "ColourLogo": "get/Manage/BusinessInfo/PortraitColourLogo/",
+  "BWLogo": "get/Manage/BusinessInfo/PortraitBWLogo/",
   "LetterHead": "Custom",
   "Font": "get/Manage/BusinessInfo/Font/",
-  "Data": "get/Orders/Release/OrderData/",
-  "DocNo": "OrderNo",
+  "Data": "get/Estimates/Project/EstimateData/",
+  "DocNo": "EstimateNo",
   "Logo": {
     "Style": {
       "marginBottom": "1mm"
-    }
-  },
-  "PageContent": {
-    "Style": {
-      "paddingTop": "5mm"
     }
   },
   "PageTitle": {
@@ -63,13 +58,20 @@
       "ShowPageNumber": true,
       "Style": {
         "fontSize": 10,
-        "color": "rgb(0, 0, 0)",
+        "color": "rgb(110, 111, 114)",
         "position": "absolute",
         "width": "100vw",
         "bottom": "13mm"
       }
     }
   ],
+  "ParticularHeader": {
+    "Type": "data",
+    "Key": "Header",
+    "Style": {
+      "padding": "1mm 30mm 1mm 19mm"
+    }
+  },
   "Header": {
     "Spacing": 0,
     "Padding": 3,
@@ -95,30 +97,14 @@
             "Style": {
               "width": "20mm"
             },
-            "Value": "Order No. :"
+            "Value": "Est No. :"
           },
           {
             "Type": "data",
-            "Key": "OrderNo",
+            "Key": "EstimateNo",
             "Style": {
               "width": "30mm",
               "fontWeight": 700
-            }
-          }
-        ],
-        [
-          {
-            "Type": "text",
-            "Style": {
-              "width": "20mm"
-            },
-            "Value": "AE No. :"
-          },
-          {
-            "Type": "data",
-            "Key": "AENo",
-            "Style": {
-              "width": "30mm"
             }
           }
         ],
@@ -151,40 +137,9 @@
             "Key": "SubProduct",
             "Width": "30mm"
           }
-        ],
-        [
-          {
-            "Type": "text",
-            "Style": {
-              "width": "20mm"
-            },
-            "Value": "Client Name :"
-          },
-          {
-            "Type": "data",
-            "Key": "ClientName",
-            "Width": "30mm"
-          }
         ]
       ],
       [
-        [
-          {
-            "Type": "text",
-            "Value": "Date :",
-            "Style": {
-              "width": "20mm"
-            }
-          },
-          {
-            "Type": "date",
-            "Key": "OrderDate",
-            "Style": {
-              "width": "30mm",
-              "fontWeight": 700
-            }
-          }
-        ],
         [
           {
             "Type": "text",
@@ -233,22 +188,6 @@
               "width": "30mm"
             }
           }
-        ],
-        [
-          {
-            "Type": "text",
-            "Value": "",
-            "Style": {
-              "width": "20mm"
-            }
-          },
-          {
-            "Type": "text",
-            "Value": " ",
-            "Style": {
-              "width": "30mm"
-            }
-          }
         ]
       ],
       [
@@ -263,12 +202,13 @@
           {
             "Type": "data",
             "Key": [
-              "SupplierName",
+              "ClientName",
               "_br",
-              "SupplierAddress"
+              "ClientAddress"
             ],
             "Style": {
-              "width": "60mm"
+              "width": "60mm",
+              "fontWeight": 700
             }
           }
         ],
@@ -308,8 +248,7 @@
     ]
   },
   "Particulars": {
-    "Source": "get/Orders/Release/OrderRows/",
-    "showDescriptionRow": true,
+    "Source": "get/Estimates/Production/EstimateRows/",
     "Style": "font-size:8; width:180mm;",
     "ContentStyle": {
       "minHeight": "35mm"
@@ -345,23 +284,7 @@
         "Label": "Description",
         "Key": "Particular",
         "Style": {
-          "paddingLeft": "20mm",
-          "paddingRight": "30mm"
-        }
-      },
-      {
-        "Type": "product",
-        "Key": "Product",
-        "Label": "Product",
-        "Path": "get/Estimates/Media/RowTitles/",
-        "PathRequestKey": [
-          [
-            "Product",
-            "ProductId"
-          ]
-        ],
-        "Style": {
-          "width": "30mm"
+          "width": "130mm"
         }
       },
       {
@@ -391,7 +314,7 @@
     }
   ],
   "SubTotal": {
-    "Source": "get/Orders/Release/SubTotal/",
+    "Source": "get/Estimates/Production/SubTotal/",
     "Style": "border-bottom:2px solid #AAAAAA; border-top:2px solid rgb( 142,168,61); width:180mm; font-size:8;width:50%",
     "Spacing": 0,
     "Padding": 3,
@@ -424,6 +347,18 @@
       {
         "Type": "text",
         "Value": "Authorized Signatory"
+      },
+      {
+        "Type": "text",
+        "Value": "AE"
+      },
+      {
+        "Type": "text",
+        "Value": "AS"
+      },
+      {
+        "Type": "text",
+        "Value": "Approved"
       }
     ],
     "SignatoriesStyle": {

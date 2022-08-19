@@ -3,24 +3,25 @@
     "fontFamily": "Verdana"
   },
   "ColorPageStyle": {
-    "backgroundColor": "rgb(254, 353, 225)"
+    "backgroundColor": "rgb(255, 255, 255)"
   },
   "Theme": [
-    142,
-    168,
-    61
+    255,
+    0,
+    0
   ],
   "Orientation": "landscape",
   "BusinessInfo": "get/Manage/BusinessInfo/Details/",
-  "ColourLogo": "get/Manage/BusinessInfo/LandscapeColourLogo/",
-  "BWLogo": "get/Manage/BusinessInfo/LandscapeBWLogo/",
+  "ColourLogo": "get/Manage/BusinessInfo/PortraitColourLogo/",
+  "BWLogo": "get/Manage/BusinessInfo/PortraitBWLogo/",
   "LetterHead": "Custom",
   "Font": "get/Manage/BusinessInfo/Font/",
-  "Data": "get/Orders/Release/OrderData/",
+  "Data": "get/Orders/Telecast/OrderData/",
   "DocNo": "OrderNo",
   "Logo": {
     "Style": {
-      "marginBottom": "1mm"
+      "marginBottom": "1mm",
+      "height": "60mm"
     }
   },
   "PageContent": {
@@ -38,32 +39,13 @@
       "paddingBottom": "2.5mm"
     }
   },
-  "LHData": [
-    {
-      "Element": "Details1",
-      "Style": {
-        "color": "rgb(110, 111, 114)",
-        "fontSize": "3.15mm",
-        "paddingTop": "1.5mm",
-        "fontFamily": "Weisch"
-      }
-    },
-    {
-      "Element": "Details2",
-      "Style": {
-        "color": "rgb(110, 111, 114)",
-        "fontSize": "3.15mm",
-        "paddingTop": "1.5mm",
-        "fontFamily": "Weisch"
-      }
-    }
-  ],
+  "LHData": [],
   "Footer": [
     {
       "ShowPageNumber": true,
       "Style": {
         "fontSize": 10,
-        "color": "rgb(0, 0, 0)",
+        "color": "rgb(110, 111, 114)",
         "position": "absolute",
         "width": "100vw",
         "bottom": "13mm"
@@ -308,11 +290,11 @@
     ]
   },
   "Particulars": {
-    "Source": "get/Orders/Release/OrderRows/",
+    "Source": "get/Orders/Telecast/OrderRows/",
     "showDescriptionRow": true,
     "Style": "font-size:8; width:180mm;",
     "ContentStyle": {
-      "minHeight": "35mm"
+      "minHeight": "5mm"
     },
     "Padding": 3,
     "Type": "dynamic-table",
@@ -327,7 +309,7 @@
       "color": "rgb(0, 0, 0)"
     },
     "ColorHeadStyle": {
-      "backgroundColor": "rgb(142, 168, 61)",
+      "backgroundColor": "rgb(255, 0, 0)",
       "color": "rgb(255, 255, 255)",
       "border": "none"
     },
@@ -391,7 +373,7 @@
     }
   ],
   "SubTotal": {
-    "Source": "get/Orders/Release/SubTotal/",
+    "Source": "get/Orders/Telecast/SubTotal/",
     "Style": "border-bottom:2px solid #AAAAAA; border-top:2px solid rgb( 142,168,61); width:180mm; font-size:8;width:50%",
     "Spacing": 0,
     "Padding": 3,
@@ -417,7 +399,7 @@
       "borderBottom": "2px solid rgb(0, 0, 0)"
     },
     "ColorStyle": {
-      "borderBottom": "2px solid rgb(142, 168, 61)"
+      "borderBottom": "2px solid rgb(255, 0, 0)"
     },
     "Type": "fixed-table",
     "Signatories": [
@@ -428,6 +410,7 @@
     ],
     "SignatoriesStyle": {
       "paddingTop": "18mm",
+      "paddingBottom": "5mm",
       "display": "flex",
       "flexDirection": "row",
       "justifyContent": "space-around"
@@ -476,8 +459,7 @@
           "width": "85mm",
           "paddingRight": "2mm",
           "paddingVertical": "2mm"
-        },
-        "Value": "Account Name: Stark Communications Pvt Ltd<br>Bank: Union Bank of India<br>Branch: Vellayambalam Branch<br>Account No: 560261000000323<br>IFSC: UBIN0905470<br>Swift code: UBININBBERM"
+        }
       }
     ],
     "FooterStyles": {

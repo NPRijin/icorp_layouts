@@ -16,7 +16,7 @@
   "BWLogo": "get/Manage/BusinessInfo/LandscapeBWLogo/",
   "LetterHead": "Custom",
   "Font": "get/Manage/BusinessInfo/Font/",
-  "Data": "get/Orders/Release/OrderData/",
+  "Data": "get/Orders/Work/OrderData/",
   "DocNo": "OrderNo",
   "Logo": {
     "Style": {
@@ -308,7 +308,7 @@
     ]
   },
   "Particulars": {
-    "Source": "get/Orders/Release/OrderRows/",
+    "Source": "get/Orders/Work/OrderRows/",
     "showDescriptionRow": true,
     "Style": "font-size:8; width:180mm;",
     "ContentStyle": {
@@ -391,7 +391,7 @@
     }
   ],
   "SubTotal": {
-    "Source": "get/Orders/Release/SubTotal/",
+    "Source": "get/Orders/Work/SubTotal/",
     "Style": "border-bottom:2px solid #AAAAAA; border-top:2px solid rgb( 142,168,61); width:180mm; font-size:8;width:50%",
     "Spacing": 0,
     "Padding": 3,

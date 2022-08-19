@@ -1,0 +1,157 @@
+[
+  {
+    "Size": 12,
+    "Key": "reportRowOne",
+    "Content_Type": "rows",
+    "Content": [
+      {
+        "Size": 12,
+        "Key": "reportList",
+        "Content_Type": "list",
+        "Content": {
+          "HasFilter": true,
+          "HasClearButton": true,
+          "Reports": [
+            {
+              "Key": "Excel",
+              "Class": "btn-success",
+              "Path": "/get_report/Reports/MIS/GetExcelReport/",
+              "Label": "Get Excel Report"
+            }
+          ],
+          "Filters": {
+            "Size": 12,
+            "Content_Type": "filter-form",
+            "Content": {
+              "Elements": [
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementTwo",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "Category",
+                        "Type": "select",
+                        "Name": "Category",
+                        "DefaultOptions": [
+                          {
+                            "label": "PRODUCTION",
+                            "value": "Production"
+                          },
+                          {
+                            "label": "CREATIVE",
+                            "value": "Creative"
+                          },
+                          {
+                            "label": "MEDIA",
+                            "value": "Media"
+                          },
+                          {
+                            "label": "SHOOT",
+                            "value": "Shoot"
+                          },
+                          {
+                            "label": "EVENTS",
+                            "value": "Events"
+                          },
+                          {
+                            "label": "RETAINER",
+                            "value": "Retainer"
+                          },
+                          {
+                            "label": "PROJECT",
+                            "value": "Project"
+                          }
+                        ],
+                        "Placeholder": "Select Category",
+                        "Key": "Report"
+                      },
+                      {
+                        "Label": "Start Date",
+                        "Type": "date",
+                        "Name": "StartDate",
+                        "Default": "-30 Days"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementThree",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "Process",
+                        "Type": "select",
+                        "Name": "Process",
+                        "DefaultOptions": [
+                          {
+                            "label": "ESTIMATES",
+                            "value": "Estimates"
+                          },
+                          {
+                            "label": "ORDERS",
+                            "value": "Orders"
+                          },
+                          {
+                            "label": "INVOICES",
+                            "value": "Invoices"
+                          }
+                        ],
+                        "Placeholder": "Select Process",
+                        "Key": "Report"
+                      },
+                      {
+                        "Label": "End Date",
+                        "Type": "date",
+                        "Name": "EndDate",
+                        "Default": "Today"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementOne",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "Client",
+                        "Type": "async-select",
+                        "Name": "Client",
+                        "Source": "get/Masters/Clients/searchEntity/",
+                        "SourceRequestBody": [
+                          [
+                            "term",
+                            ""
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "Path": "get/Reports/MIS/GetReport/",
+          "List": "MIS Reports",
+          "ListClass": "data-table",
+          "Title": "MIS List",
+          "THead": [
+            "DocumentNo",
+            "JobNo",
+            "Date",
+            "Product",
+            "ClientName",
+            "Total",
+            "TaxAmount",
+            "GrandTotal"
+          ]
+        }
+      }
+    ]
+  }
+]

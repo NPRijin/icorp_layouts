@@ -1,0 +1,40 @@
+[
+  {
+    "Size": 12,
+    "Content_Type": "rows",
+    "Content": [
+      {
+        "Size": 12,
+        "Content_Type": "list",
+        "Content": {
+          "Path": "list/Orders/Work/custom/",
+          "List": "Orders",
+          "ListClass": "data-table",
+          "Title": "Order List",
+          "THead": [
+            "#",
+            "OrderNo",
+            "Client",
+            "Title",
+            "JobNo",
+            "Status",
+            "Action"
+          ],
+          "Buttons": [
+            {
+              "Button": "Create Order",
+              "Access": [
+                "rw000",
+                "rwe00",
+                "rwea0",
+                "rwead"
+              ],
+              "Function": "goto('/Orders/Work/Create/')",
+              "RedirectTo": "Orders/Work/Create"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

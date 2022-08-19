@@ -1,0 +1,112 @@
+[
+  {
+    "Size": 12,
+    "Key": "reportRowOne",
+    "Content_Type": "rows",
+    "Content": [
+      {
+        "Size": 12,
+        "Key": "reportList",
+        "Content_Type": "list",
+        "Content": {
+          "HasFilter": true,
+          "HasClearButton": true,
+          "Reports": [
+            {
+              "Key": "Excel",
+              "Class": "btn-success",
+              "Path": "/get_report/Reports/Performance/GetExcelReport/",
+              "Label": "Get Excel Report"
+            }
+          ],
+          "Filters": {
+            "Size": 12,
+            "Content_Type": "filter-form",
+            "Content": {
+              "Elements": [
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementTwo",
+                  "Content": {
+                    "Elements": [
+                        {
+                        "Label": "Created By",
+                        "Type": "select",
+                        "Name": "Created By",
+                        "Source": "get/Manage/Staffs/GetJobCreators/",
+                        "Placeholder": "Select Creator",
+                        "Key": "Report"
+                      },
+                      {
+                        "Label": "Start Date",
+                        "Type": "date",
+                        "Name": "StartDate",
+                        "Default": "-30 Days"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementThree",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "Product",
+                        "Type": "select",
+                        "Name": "Product",
+                        "Source": "get/Masters/Products/ListProducts/",
+                        "Placeholder": "Select Product",
+                        "Key": "Report"
+                      },
+                      {
+                        "Label": "End Date",
+                        "Type": "date",
+                        "Name": "EndDate",
+                        "Default": "Today"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementOne",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "Client",
+                        "Type": "async-select",
+                        "Name": "Client",
+                        "Source": "get/Masters/Clients/searchEntity/",
+                        "SourceRequestBody": [
+                          [
+                            "term",
+                            ""
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "Path": "get/Reports/Performance/GetReport/",
+          "List": "Performance Report",
+          "ListClass": "data-table",
+          "Title": "Job List",
+          "THead": [
+            "Job Code",
+            "Job Date",
+            "Title",
+            "Client Name",
+            "Created By"
+          ]
+        }
+      }
+    ]
+  }
+]

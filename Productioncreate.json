@@ -114,13 +114,23 @@
                 "Disabled": true
               },
               {
-                "Label": "Valid Till",
-                "Type": "date",
-                "Name": "EndDate",
-                "Default": "+15 Days",
-                "Placeholder": "",
-                "Required": 0,
-                "Key": "EndDate"
+                "Label": "Country",
+                "Type": "async-select",
+                "SelectLimit": 1,
+                "Name": "Country",
+                "Source": "get/Manage/Currencies/searchEntity/",
+                "SourceRequestBody": [
+                  [
+                    "term",
+                    ""
+                  ]
+                ],
+                "Required": 1,
+                "OnClear": {
+                  "data": [
+                    "Country"
+                  ]
+                }
               }
             ]
           }

@@ -1,0 +1,116 @@
+[
+  {
+    "Size": 12,
+    "Key": "reportRowOne",
+    "Content_Type": "rows",
+    "Content": [
+      {
+        "Size": 12,
+        "Key": "reportList",
+        "Content_Type": "list",
+        "Content": {
+          "HasFilter": true,
+          "HasClearButton": true,
+          "Reports": [
+            {
+              "Key": "Excel",
+              "Class": "btn-success",
+              "Path": "/get_report/Reports/MRV/GetExcelReport/",
+              "Label": "Get Excel Report"
+            }
+          ],
+          "Filters": {
+            "Size": 12,
+            "Content_Type": "filter-form",
+            "Content": {
+              "Elements": [
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementTwo",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "Start Date",
+                        "Type": "date",
+                        "Name": "StartDate",
+                        "Default": "-30 Days"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementThree",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "End Date",
+                        "Type": "date",
+                        "Name": "EndDate",
+                        "Default": "Today"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementOne",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "Client",
+                        "Type": "async-select",
+                        "Name": "Client",
+                        "Source": "get/Masters/Clients/searchEntity/",
+                        "SourceRequestBody": [
+                          [
+                            "term",
+                            ""
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Size": 4,
+                  "Content_Type": "form-elements",
+                  "Key": "formElementOne",
+                  "Content": {
+                    "Elements": [
+                      {
+                        "Label": "INS Approved",
+                        "Type": "checkbox",
+                        "Name": "INS",
+                        "Default": "True"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "Path": "get/Reports/MRV/GetReport/",
+          "List": "MRV Reports",
+          "ListClass": "data-table",
+          "Title": "MRV List",
+          "THead": [
+            "Date",
+            "JobTitle",
+            "Media",
+            "Client",
+            "RONo",
+            "JobNo",
+            "Total",
+            "TaxAmount",
+            "GrandTotal",
+            "Currency"
+          ]
+        }
+      }
+    ]
+  }
+]

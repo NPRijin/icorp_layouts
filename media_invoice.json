@@ -3,24 +3,26 @@
     "fontFamily": "Verdana"
   },
   "ColorPageStyle": {
-    "backgroundColor": "rgb(254, 353, 225)"
+    "backgroundColor": "rgb(255, 255, 255)"
   },
   "Theme": [
-    142,
-    168,
-    61
+    255,
+    0,
+    0
+
   ],
-  "Orientation": "landscape",
+  "Orientation": "portrait",
   "BusinessInfo": "get/Manage/BusinessInfo/Details/",
-  "ColourLogo": "get/Manage/BusinessInfo/LandscapeColourLogo/",
-  "BWLogo": "get/Manage/BusinessInfo/LandscapeBWLogo/",
+  "ColourLogo": "get/Manage/BusinessInfo/PortraitColourLogo/",
+  "BWLogo": "get/Manage/BusinessInfo/PortraitBWLogo/",
   "LetterHead": "Custom",
   "Font": "get/Manage/BusinessInfo/Font/",
-  "Data": "get/Orders/Release/OrderData/",
-  "DocNo": "OrderNo",
+  "Data": "get/Invoices/Media/InvoiceData/",
+  "DocNo": "InvoiceNo",
   "Logo": {
     "Style": {
-      "marginBottom": "1mm"
+      "marginBottom": "1mm",
+      "height": "30mm"
     }
   },
   "PageContent": {
@@ -38,26 +40,7 @@
       "paddingBottom": "2.5mm"
     }
   },
-  "LHData": [
-    {
-      "Element": "Details1",
-      "Style": {
-        "color": "rgb(110, 111, 114)",
-        "fontSize": "3.15mm",
-        "paddingTop": "1.5mm",
-        "fontFamily": "Weisch"
-      }
-    },
-    {
-      "Element": "Details2",
-      "Style": {
-        "color": "rgb(110, 111, 114)",
-        "fontSize": "3.15mm",
-        "paddingTop": "1.5mm",
-        "fontFamily": "Weisch"
-      }
-    }
-  ],
+  "LHData": [],
   "Footer": [
     {
       "ShowPageNumber": true,
@@ -70,6 +53,14 @@
       }
     }
   ],
+  "ParticularHeader": {
+    "Type": "data",
+    "Key": "Header",
+    "Style": {
+      "padding": "1mm 30mm 1mm 14mm",
+      "fontWeight": "700"
+    }
+  },
   "Header": {
     "Spacing": 0,
     "Padding": 3,
@@ -95,11 +86,11 @@
             "Style": {
               "width": "20mm"
             },
-            "Value": "Order No. :"
+            "Value": "Inv No. :"
           },
           {
             "Type": "data",
-            "Key": "OrderNo",
+            "Key": "InvoiceNo",
             "Style": {
               "width": "30mm",
               "fontWeight": 700
@@ -151,20 +142,6 @@
             "Key": "SubProduct",
             "Width": "30mm"
           }
-        ],
-        [
-          {
-            "Type": "text",
-            "Style": {
-              "width": "20mm"
-            },
-            "Value": "Client Name :"
-          },
-          {
-            "Type": "data",
-            "Key": "ClientName",
-            "Width": "30mm"
-          }
         ]
       ],
       [
@@ -178,7 +155,7 @@
           },
           {
             "Type": "date",
-            "Key": "OrderDate",
+            "Key": "InvoiceDate",
             "Style": {
               "width": "30mm",
               "fontWeight": 700
@@ -197,8 +174,7 @@
             "Type": "date",
             "Key": "EstimateDate",
             "Style": {
-              "width": "30mm",
-              "fontWeight": 700
+              "width": "30mm"
             }
           }
         ],
@@ -227,8 +203,8 @@
             }
           },
           {
-            "Type": "text",
-            "Value": " ",
+            "Type": "date",
+            "Key": "asd",
             "Style": {
               "width": "30mm"
             }
@@ -243,8 +219,8 @@
             }
           },
           {
-            "Type": "text",
-            "Value": " ",
+            "Type": "date",
+            "Key": "asd",
             "Style": {
               "width": "30mm"
             }
@@ -255,7 +231,7 @@
         [
           {
             "Type": "text",
-            "Value": "To:",
+            "Value": "To,",
             "Style": {
               "width": "20mm"
             }
@@ -263,12 +239,13 @@
           {
             "Type": "data",
             "Key": [
-              "SupplierName",
+              "ClientName",
               "_br",
-              "SupplierAddress"
+              "ClientAddress"
             ],
             "Style": {
-              "width": "60mm"
+              "width": "60mm",
+              "fontWeight": 700
             }
           }
         ],
@@ -291,7 +268,7 @@
         [
           {
             "Type": "text",
-            "Value": "PAN No.: ",
+            "Value": "PAN No: ",
             "Style": {
               "width": "20mm"
             }
@@ -308,12 +285,9 @@
     ]
   },
   "Particulars": {
-    "Source": "get/Orders/Release/OrderRows/",
-    "showDescriptionRow": true,
-    "Style": "font-size:8; width:180mm;",
-    "ContentStyle": {
-      "minHeight": "35mm"
-    },
+    "Source": "get/Invoices/Media/InvoiceRows/",
+    "Style": "font-size:10; width:180mm;",
+    "ContentStyle": {},
     "Padding": 3,
     "Type": "dynamic-table",
     "HeadStyle": {
@@ -327,7 +301,7 @@
       "color": "rgb(0, 0, 0)"
     },
     "ColorHeadStyle": {
-      "backgroundColor": "rgb(142, 168, 61)",
+      "backgroundColor": "rgb(255, 0, 0)",
       "color": "rgb(255, 255, 255)",
       "border": "none"
     },
@@ -374,7 +348,7 @@
         "Key": "Net",
         "IsNumber": true,
         "Style": {
-          "width": "30mm",
+          "width": "35mm",
           "textAlign": "right"
         }
       }
@@ -391,7 +365,7 @@
     }
   ],
   "SubTotal": {
-    "Source": "get/Orders/Release/SubTotal/",
+    "Source": "get/Invoices/Media/SubTotal/",
     "Style": "border-bottom:2px solid #AAAAAA; border-top:2px solid rgb( 142,168,61); width:180mm; font-size:8;width:50%",
     "Spacing": 0,
     "Padding": 3,
@@ -417,13 +391,21 @@
       "borderBottom": "2px solid rgb(0, 0, 0)"
     },
     "ColorStyle": {
-      "borderBottom": "2px solid rgb(142, 168, 61)"
+      "borderBottom": "2px solid rgb(255, 0, 0)"
     },
     "Type": "fixed-table",
     "Signatories": [
       {
         "Type": "text",
         "Value": "Authorized Signatory"
+      },
+      {
+        "Type": "text",
+        "Value": "AE"
+      },
+      {
+        "Type": "text",
+        "Value": "AS"
       }
     ],
     "SignatoriesStyle": {
@@ -438,18 +420,6 @@
         "Value": "E & OE",
         "Style": {
           "paddingTop": "13mm"
-        }
-      },
-      {
-        "Type": "array",
-        "Value": [
-          "Signature: ",
-          "Name: ",
-          "Date: "
-        ],
-        "Style": {
-          "paddingTop": "2mm",
-          "width": "50mm"
         }
       }
     ],
@@ -468,7 +438,7 @@
           "paddingRight": "2mm",
           "paddingVertical": "2mm"
         },
-        "Value": "Payment Terms:<br />1. This document is valid only for a period of 30 days<br>2. Part payment/advance, if any, should be by crossed a/c payee cheque/demand draft in favour of Stark Communications Pvt Ltd <br />payable at Thiruvananthapuram or by RTGS/NEFT"
+        "Value": "1. TDS should be deducted @2% on the bill amount <br /> (excluding GST) under section 194C of Income Tax Act,1961.<br />2. Payment should be by crossed a/c payee cheque/demand draft<br />in favour of Stark Communications Pvt Ltd <br /> payable at Thiruvananthapuram or by RTGS/NEFT to <br /> Union Bank of India, Vellayambalam Branch,<br /> Thiruvananthapuram"
       },
       {
         "Type": "richText",
@@ -476,14 +446,14 @@
           "width": "85mm",
           "paddingRight": "2mm",
           "paddingVertical": "2mm"
-        },
-        "Value": "Account Name: Stark Communications Pvt Ltd<br>Bank: Union Bank of India<br>Branch: Vellayambalam Branch<br>Account No: 560261000000323<br>IFSC: UBIN0905470<br>Swift code: UBININBBERM"
+        }
       }
     ],
     "FooterStyles": {
       "display": "flex",
       "flexDirection": "row",
-      "justifyContent": "space-between"
+      "justifyContent": "space-between",
+      "color": "rgb(0, 0, 0)"
     }
   }
 }

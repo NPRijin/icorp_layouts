@@ -1,0 +1,43 @@
+[
+  {
+    "Size": 12,
+    "Key": "estimateRowOne",
+    "Content_Type": "rows",
+    "Content": [
+      {
+        "Size": 12,
+        "Key": "estimateList",
+        "Content_Type": "list",
+        "Content": {
+          "Path": "list/Estimates/AllEstimates/custom/",
+          "List": "Estimates",
+          "ListClass": "data-table",
+          "Title": "Jobs List",
+          "THead": [
+            "#",
+            "EstimateNo",
+            "Client",
+            "Title",
+            "JobNo",
+            "Created",
+            "Status",
+            "Action"
+          ],
+          "Buttons": [
+            {
+              "Button": "Create Estimate",
+              "Access": [
+                "rw000",
+                "rwe00",
+                "rwea0",
+                "rwead"
+              ],
+              "Function": "goto('/Estimates/Creative/Create/')",
+              "RedirectTo": "Estimates/Creative/Create"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -4,14 +4,33 @@
     "Key": "invoiceRow",
     "Content_Type": "invoice",
     "Content": {
-      "Path": "create/Estimates/Creative/",
-      "Button": "SAVE ESTIMATE",
-      "OnSuccess": "/Estimates/Creative",
+      "Path": "update/Orders/Work/",
+      "Source": "get/Orders/Work/",
+      "SourceResponseChange": {
+        "Source": "get/Job/detailsForOrder/",
+        "SourceRequestBody": [
+          [
+            [
+              "JobId[]",
+              0
+            ],
+            "Job"
+          ]
+        ],
+        "ResponseFillSelectOption": {
+          "SupplierDetail": [
+            "JobData",
+            "SupplierDetail"
+          ]
+        }
+      },
+      "Button": "SAVE WORK ORDER",
+      "OnSuccess": "/Orders/Work",
       "Elements": [
         {
           "Size": 12,
           "Key": "headerOne",
-          "Content_Type": "header-form",
+          "Content_Type": "header",
           "Content": [
             {
               "Content_Type": "brand",
@@ -29,11 +48,11 @@
                   {
                     "Type": "date",
                     "Label": "Date",
-                    "Key": "EstimateDate",
-                    "Name": "EstimateDate",
+                    "Name": "OrderDate",
+                    "Key": "OrderDate",
                     "Default": "Today",
                     "Required": 1,
-                    "Placeholder": "Estimate Date"
+                    "Placeholder": "Order Date"
                   }
                 ],
                 "Class": "ms-auto"
@@ -59,15 +78,14 @@
                   ]
                 ],
                 "OnChangeFill": [
-                  "Id",
+                  "ClientId",
                   "Address",
-                  "GSTIN",
-                  "PANNO"
+                  "GSTIN"
                 ],
                 "Get": [
                   "Tax"
                 ],
-                "hasDefaultOptions": true,
+                "hasDefaultOptions": false,
                 "Placeholder": "Enter Client Name",
                 "OnChange": "TaxInputGenerate('subtotal_tax',{'Client': $('#Id').val()})",
                 "Required": 1,
@@ -79,39 +97,17 @@
                 "Key": "Id"
               },
               {
+                "Type": "hidden",
+                "Name": "ClientId",
+                "Key": "ClientId"
+              },
+              {
                 "Label": "Address",
                 "Type": "textarea",
                 "Name": "Address",
                 "Placeholder": "Enter Office Address",
                 "Required": 0,
                 "Key": "Address"
-              }
-            ]
-          }
-        },
-        {
-          "Size": 4,
-          "Content_Type": "form-elements",
-          "Key": "formElementTwo",
-          "Content": {
-            "Elements": [
-              {
-                "Label": "GSTIN",
-                "Type": "text",
-                "Key": "GSTIN",
-                "Name": "GSTIN",
-                "Placeholder": "Enter GSTIN",
-                "Required": 0,
-                "Disabled": true
-              },
-              {
-                "Label": "PAN",
-                "Type": "text",
-                "Key": "PANNO",
-                "Name": "PANNO",
-                "Placeholder": "Enter PAN",
-                "Required": 0,
-                "Disabled": true
               },
               {
                 "Label": "Country",
@@ -138,17 +134,15 @@
         {
           "Size": 4,
           "Content_Type": "form-elements",
-          "Key": "formElementThree",
           "Content": {
             "Elements": [
               {
-                "Label": "Estimate No. #",
+                "Label": "Order No. #",
                 "Type": "text",
-                "Source": "get/Estimates/Creative/NewEstimateNumber/",
-                "Name": "EstimateNo",
-                "Placeholder": "Estimate Number",
+                "Name": "OrderNo",
+                "Placeholder": "Order Number",
                 "Required": 1,
-                "Key": "EstimateNo"
+                "Disabled": true
               },
               {
                 "Label": "Job No.",
@@ -156,23 +150,24 @@
                 "IsMulti": "true",
                 "SelectLimit": 1,
                 "Name": "JobId[]",
-                "Source": "get/Estimates/Creative/JobsToEstimate/",
+                "Source": "get/Orders/Work/JobsToOrder/",
+                "OptionLabel": "JobCode",
                 "OnClear": {
                   "data": [
                     "Title",
                     "ClientName",
-                    "Id",
+                    "ClientId",
+                    "Address",
                     "GSTIN",
-                    "JobId[]",
-                    "PANNO",
-                    "Address"
+                    "JobId[]"
                   ],
                   "rowData": [
                     {
                       "value": "",
                       "key": [
                         "multipleForm-ignore",
-                        0
+                        0,
+                        "Particular[]"
                       ]
                     },
                     {
@@ -189,7 +184,7 @@
                 },
                 "OnChange": {
                   "Name": "SelectedJobs",
-                  "Source": "get/Job/detailsForEstimate/",
+                  "Source": "get/Job/detailsForOrder/",
                   "Response": "Options",
                   "SourceRequestBody": [
                     [
@@ -216,7 +211,7 @@
                     {
                       "value": [
                         "JobData",
-                        "SubProduct"
+                        "Product"
                       ],
                       "key": [
                         "multipleForm-ignore",
@@ -227,7 +222,19 @@
                       ]
                     }
                   ],
+                  "ResponseFillSelectOption": {
+                    "SupplierDetail": [
+                      "JobData",
+                      "SupplierDetail"
+                    ]
+                  },
                   "ResponseFill": [
+                    {
+                      "ApprovedEstimateId": [
+                        "JobData",
+                        "ApprovedEstimate"
+                      ]
+                    },
                     {
                       "Title": [
                         "JobData",
@@ -241,7 +248,7 @@
                       ]
                     },
                     {
-                      "Id": [
+                      "ClientId": [
                         "ClientData",
                         "_id"
                       ]
@@ -259,14 +266,120 @@
                       ]
                     },
                     {
-                      "PANNO": [
+                      "AENo": [
                         "ClientData",
-                        "PANNO"
+                        "AENo"
                       ]
                     }
                   ]
                 },
                 "Key": "JobSelector"
+              },
+              {
+                "Label": "Approved Estimate No.",
+                "Type": "text",
+                "Name": "AENo",
+                "Key": "AENo",
+                "Placeholder": "Approved Estimate No",
+                "Required": 1
+              }
+            ]
+          }
+        },
+        {
+          "Size": 4,
+          "Content_Type": "form-elements",
+          "Content": {
+            "Elements": [
+              {
+                "Label": "Address To",
+                "Type": "text",
+                "Name": "Person",
+                "Placeholder": "Address To",
+                "Default": "Advertisement Manager"
+              },
+              {
+                "Label": "Organization",
+                "Type": "select",
+                "Name": "SupplierDetail",
+                "HideOptionKey": false,
+                "Source": "get/Orders/Work/SupplierForOrder/",
+                "SourceRequestBody": [
+                  [
+                    "Id",
+                    "routeId"
+                  ]
+                ],
+                "Get": [
+                  "Tax"
+                ],
+                "OnChangeFill": [
+                  "Id"
+                ],
+                "OnChange": {
+                  "SourceRequestBody": [
+                    [
+                      "ApprovedEstimateId",
+                      "ApprovedEstimate",
+                      "formData"
+                    ],
+                    [
+                      "this",
+                      "Supplier"
+                    ]
+                  ],
+                  "ResponseFill": [
+                    {
+                      "multipleForm-ignore": [
+                        "multipleForm-ignore"
+                      ],
+                      "OrganizationAddress": [
+                        "OrganizationAddress"
+                      ],
+                      "Total": [
+                        "Total"
+                      ],
+                      "Discount": [
+                        "Discount"
+                      ],
+                      "DiscountPercentage": [
+                        "DiscountPercentage"
+                      ],
+                      "RoundOff": [
+                        "RoundOff"
+                      ],
+                      "SGSTPercentage": [
+                        "SGSTPercentage"
+                      ],
+                      "SGST": [
+                        "SGST"
+                      ],
+                      "CGSTPercentage": [
+                        "CGSTPercentage"
+                      ],
+                      "CGST": [
+                        "CGST"
+                      ],
+                      "IGSTPercentage": [
+                        "IGSTPercentage"
+                      ],
+                      "IGST": [
+                        "IGST"
+                      ],
+                      "AgencyCommission": [
+                        "AgencyCommission"
+                      ],
+                      "AgencyPercentage": [
+                        "AgencyPercentage"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "Label": "Organization Address",
+                "Type": "textarea",
+                "Name": "OrganizationAddress"
               }
             ]
           }
@@ -284,13 +397,6 @@
                 "Placeholder": "Enter the job title",
                 "Type": "text",
                 "Required": 1
-              },
-              {
-                "Label": "Header",
-                "Name": "Header",
-                "Key": "Header",
-                "Placeholder": "Enter the header",
-                "Type": "textarea"
               }
             ]
           }
@@ -331,20 +437,12 @@
                       {
                         "Label": "Sub Product",
                         "Type": "select",
-                        "SelectDisabled": true,
                         "Name": "Product[]",
                         "Class": "Product",
-                        "Source": "get/Estimates/Creative/SubProducts/",
-                        "copyInitialValues": [
-                          "multipleForm-ignore",
-                          0,
-                          "Parameters-ignore",
-                          0,
-                          "Product[]"
-                        ],
+                        "Source": "get/Orders/Work/SubProducts/",
                         "OnChange": {
                           "Name": "SubProduct",
-                          "Source": "get/Estimates/Creative/ProductParameters/",
+                          "Source": "get/Orders/Work/ProductParameters/",
                           "SourceRequestBody": [
                             [
                               "Product",
@@ -360,6 +458,10 @@
                     ]
                   },
                   {
+                    "Type": "measurements",
+                    "Label": "Measurements"
+                  },
+                  {
                     "Label": "Rate",
                     "Type": "text",
                     "Name": "Rate[]",
@@ -368,10 +470,12 @@
                     "OnChange": {
                       "Calculate": {
                         "data": [
-                          "Rate[]"
+                          "Rate[]",
+                          "Qty"
                         ],
                         "Operators": [
-                          "add"
+                          "add",
+                          "multiply"
                         ],
                         "resultFill": "Net[]"
                       }
@@ -379,56 +483,11 @@
                     "Key": "Rate"
                   },
                   {
-                    "Type": "parameters",
-                    "Width": "200",
-                    "Label": "Supplier Details",
-                    "Key": "suppliers",
-                    "Name": "Suppliers-ignore",
-                    "Elements": [
-                      {
-                        "Label": "Supplier",
-                        "Type": "select",
-                        "IsMulti": "true",
-                        "Name": "Supplier[]",
-                        "SelectLimit": 1000,
-                        "Class": "Supplier",
-                        "Source": "list/Masters/Suppliers/custom/",
-                        "Required": 0
-                      },
-                      {
-                        "Label": "Costing",
-                        "Key": "Costing",
-                        "Type": "percentage",
-                        "Percentage": true,
-                        "Class": "money",
-                        "Name": "Costing[]",
-                        "BaseValue": "Rate[]",
-                        "Split": [
-                          12,
-                          12,
-                          12,
-                          12
-                        ],
-                        "OnChange": {
-                          "Calculate": {
-                            "data": [
-                              "this"
-                            ],
-                            "Operators": [
-                              "add"
-                            ],
-                            "resultFill": "NetCosting[]"
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  {
                     "Label": "Net Rate",
                     "Type": "text",
                     "Name": "Net[]",
                     "Class": "net money",
-                    "Default": "0",
+                    "Default": "0.00",
                     "OnChange": {
                       "CalculateRows": {
                         "data": "Net[]",
@@ -438,22 +497,6 @@
                     },
                     "Disabled": true,
                     "Key": "Net"
-                  },
-                  {
-                    "Label": "Net Costing",
-                    "Type": "hidden",
-                    "Name": "NetCosting[]",
-                    "Class": "net money",
-                    "Default": "0",
-                    "OnChange": {
-                      "CalculateRows": {
-                        "data": "NetCosting[]",
-                        "Operator": "add",
-                        "resultFill": "TotalCosting"
-                      }
-                    },
-                    "Disabled": true,
-                    "Key": "NetCosting"
                   }
                 ]
               }
@@ -494,88 +537,21 @@
                 "Default": "0"
               },
               {
-                "Label": "Total Costing",
-                "Type": "hidden",
-                "Percentage": false,
-                "Class": "add money",
-                "Name": "TotalCosting",
-                "Disabled": true,
-                "Key": "TotalCosting",
-                "Default": "0",
-                "BaseValue": "Total",
-                "OnChange": {
-                  "Calculate": [
-                    {
-                      "BaseValues": [
-                        "Total",
-                        "Discount",
-                        "this"
-                      ],
-                      "Operators": [
-                        "add",
-                        "subtract",
-                        "subtract"
-                      ],
-                      "ResultFill": "EstimatedRevenue"
-                    }
-                  ]
-                }
-              },
-              {
                 "Label": "Discount",
                 "Key": "Discount",
                 "Type": "percentage",
                 "Percentage": true,
                 "Class": "subtract money",
                 "Name": "Discount",
-                "BaseValue": "Total",
-                "OnChange": {
-                  "Calculate": [
-                    {
-                      "BaseValues": [
-                        "Total",
-                        "TotalCosting",
-                        "this"
-                      ],
-                      "Operators": [
-                        "add",
-                        "subtract",
-                        "subtract"
-                      ],
-                      "ResultFill": "EstimatedRevenue"
-                    }
-                  ]
-                }
+                "BaseValue": "Total"
               },
               {
-                "Label": "Estimated Revenue",
-                "Type": "text",
-                "Percentage": false,
-                "Class": "add money",
-                "Name": "EstimatedRevenue",
-                "Disabled": true,
-                "Key": "Revenue",
-                "Default": "0.00",
-                "BaseValues": [
-                  "DiscountAmount",
-                  "TotalCosting"
-                ],
-                "Operators": [
-                  "add",
-                  "subtract"
-                ]
-              },
-              {
-                "Type": "Tax",
-                "Key": "Tax",
-                "Name": "Tax-Ignore",
-                "Source": "get/Estimates/Creative/Tax/",
-                "SourceRequestBody": [
-                  [
-                    "Client",
-                    "Id"
-                  ]
-                ],
+                "Label": "Less: Agency Commission",
+                "Key": "AgencyCommission",
+                "Type": "percentage",
+                "Percentage": true,
+                "Class": "subtract money",
+                "Name": "AgencyCommission",
                 "BaseValues": [
                   "Total",
                   "Discount"
@@ -584,16 +560,41 @@
                   "add",
                   "subtract"
                 ],
+                "Default": 13
+              },
+              {
+                "Type": "Tax",
+                "Key": "Tax Supplier",
+                "Name": "Tax-Ignore",
+                "Source": "get/Orders/Work/Tax/",
+                "SourceRequestBody": [
+                  [
+                    "SupplierDetail",
+                    "Id"
+                  ]
+                ],
+                "BaseValues": [
+                  "Total",
+                  "Discount",
+                  "AgencyCommission"
+                ],
+                "Operators": [
+                  "add",
+                  "subtract",
+                  "subtract"
+                ],
                 "OnChange": {
                   "Calculate": [
                     {
                       "BaseValues": [
                         "Total",
                         "Discount",
+                        "AgencyCommission",
                         "this"
                       ],
                       "Operators": [
                         "add",
+                        "subtract",
                         "subtract",
                         "add"
                       ],
@@ -603,11 +604,13 @@
                       "BaseValues": [
                         "Total",
                         "Discount",
+                        "AgencyCommission",
                         "this",
                         "RoundOff"
                       ],
                       "Operators": [
                         "add",
+                        "subtract",
                         "subtract",
                         "add",
                         "add"
@@ -628,10 +631,12 @@
                 "BaseValues": [
                   "Total",
                   "Discount",
+                  "AgencyCommission",
                   "Tax"
                 ],
                 "Operators": [
                   "add",
+                  "subtract",
                   "subtract",
                   "add"
                 ],
@@ -647,11 +652,13 @@
                 "BaseValues": [
                   "Total",
                   "Discount",
+                  "AgencyCommission",
                   "Tax",
                   "RoundOff"
                 ],
                 "Operators": [
                   "add",
+                  "subtract",
                   "subtract",
                   "add",
                   "add"

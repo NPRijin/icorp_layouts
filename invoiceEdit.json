@@ -135,13 +135,23 @@
                 "Disabled": true
               },
               {
-                "Label": "Due Date",
-                "Type": "date",
-                "Name": "DueDate",
-                "Default": "+15 Days",
-                "Placeholder": "",
-                "Required": 0,
-                "Key": "DueDate"
+                "Label": "Country",
+                "Type": "async-select",
+                "SelectLimit": 1,
+                "Name": "Country",
+                "Source": "get/Manage/Currencies/searchEntity/",
+                "SourceRequestBody": [
+                  [
+                    "term",
+                    ""
+                  ]
+                ],
+                "Required": 1,
+                "OnClear": {
+                  "data": [
+                    "Country"
+                  ]
+                }
               }
             ]
           }
@@ -351,8 +361,7 @@
                 "Key": "Header",
                 "Placeholder": "Enter the job header",
                 "Type": "text",
-                "Required": 0,
-                "Default": "Cost of releasing the advertisements"
+                "Required": 0
               }
             ]
           }

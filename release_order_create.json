@@ -59,12 +59,8 @@
                   ]
                 ],
                 "OnChangeFill": [
-                  "Id",
                   "Address",
                   "GSTIN"
-                ],
-                "Get": [
-                  "Tax"
                 ],
                 "hasDefaultOptions": false,
                 "Placeholder": "Enter Client Name",
@@ -84,6 +80,25 @@
                 "Placeholder": "Enter Office Address",
                 "Required": 0,
                 "Key": "Address"
+              },
+              {
+                "Label": "Country",
+                "Type": "async-select",
+                "SelectLimit": 1,
+                "Name": "Country",
+                "Source": "get/Manage/Currencies/searchEntity/",
+                "SourceRequestBody": [
+                  [
+                    "term",
+                    ""
+                  ]
+                ],
+                "Required": 1,
+                "OnClear": {
+                  "data": [
+                    "Country"
+                  ]
+                }
               }
             ]
           }
@@ -113,7 +128,6 @@
                   "data": [
                     "Title",
                     "ClientName",
-                    "Id",
                     "Address",
                     "GSTIN",
                     "JobId[]"
@@ -205,12 +219,6 @@
                       ]
                     },
                     {
-                      "Id": [
-                        "ClientData",
-                        "_id"
-                      ]
-                    },
-                    {
                       "Address": [
                         "ClientData",
                         "Address"
@@ -260,6 +268,12 @@
                 "Type": "select",
                 "Name": "SupplierDetail",
                 "HideOptionKey": false,
+                "Get": [
+                  "Tax"
+                ],
+                "OnChangeFill": [
+                  "Id"
+                ],
                 "OnChange": {
                   "Source": "get/Orders/Release/GetOrderBySupplier/",
                   "SourceRequestBody": [
@@ -302,7 +316,7 @@
                       "CGSTPercentage": [
                         "CGSTPercentage"
                       ],
-                      "CGST":[
+                      "CGST": [
                         "CGST"
                       ],
                       "IGSTPercentage": [
@@ -405,10 +419,12 @@
                     "OnChange": {
                       "Calculate": {
                         "data": [
-                          "Rate[]"
+                          "Rate[]",
+                          "Qty"
                         ],
                         "Operators": [
-                          "add"
+                          "add",
+                          "multiply"
                         ],
                         "resultFill": "Net[]"
                       }
@@ -502,7 +518,7 @@
                 "Source": "get/Orders/Release/Tax/",
                 "SourceRequestBody": [
                   [
-                    "Client",
+                    "SupplierDetail",
                     "Id"
                   ]
                 ],
